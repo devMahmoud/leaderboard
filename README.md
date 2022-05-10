@@ -1,11 +1,11 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# To Do List
+# Leaderboard
 
-In this project, I'm creating an interactive and minimal To-do list, that's going to let the final user add, remove, edit and keep track of their daily tasks.
+The leaderboard website displays scores submitted by different players. It also allows you to submit your score. All data is preserved thanks to the external [Leaderboard API service.](https://www.notion.so/Leaderboard-API-service-24c0c3c116974ac49488d4eb0267ade3)
 
 # Live Demo
-[Live Demo Link](https://devmahmoud.github.io/to-do-list/dist/)
+[Live Demo Link]()
 
 ## Built With
 
@@ -22,7 +22,7 @@ In this project, I'm creating an interactive and minimal To-do list, that's goin
 - Any Code Editor (e.g. Vscode)
 ## Cloning the repository
 - Create a new folder.
-- Open your console in the new folder and run this command: git clone https://github.com/devMahmoud/to-do-list.git
+- Open your console in the new folder and run this command: git clone https://github.com/devMahmoud/leaderboard.git
 - Open /dist folder
 - Open index.html file with your code editor, if you're using Vscode, you could also use Live Server Extension.
 - You're done!
@@ -37,7 +37,7 @@ In this project, I'm creating an interactive and minimal To-do list, that's goin
 ## 🤝 Contributing
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the issues [page.](https://github.com/devMahmoud/to-do-list/issues)
+Feel free to check the issues [page.](https://github.com/devMahmoud/leaderboard/issues)
 ## Show your support
 
 Give a ⭐️ if you like this project!
