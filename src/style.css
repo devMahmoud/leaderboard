@@ -3,7 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-  
+
 body {
   width: 100%;
 }
@@ -29,7 +29,7 @@ main {
 }
 
 .list-item:nth-child(even) {
-  background: #dddddd;
+  background: #ddd;
 }
 
 .score-container {
@@ -41,10 +41,10 @@ main {
 }
 
 .add-score-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .submit-btn {
-    align-self: flex-end;
+  align-self: flex-end;
 }
