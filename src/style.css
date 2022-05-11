@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+
+main {
+  padding: 2rem 1rem;
+  width: 80%;
+  margin: auto;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scores-title {
+  display: inline-block;
+}
+
+.scores-list {
+  border: 2px solid black;
+  list-style: none;
+}
+
+.list-item:nth-child(even) {
+  background: #ddd;
+}
+
+.score-container {
+  width: 40%;
+}
+
+.form-container {
+  width: 40%;
+}
+
+.add-score-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-btn {
+  align-self: flex-end;
+}
