@@ -1,9 +1,12 @@
 import './style.css';
-import { addGameToEndPoint, addScoreToEndPoint, getScoreList } from './modules/fetchData.js';
-import { addScoreToDom, loadData, scoreList } from './modules/domEdit.js';
-// let scoresArr = [];
+import { addGameToEndPoint, addScoreToEndPoint } from './modules/fetchData.js';
+import { loadData, refreshDom } from './modules/domEdit.js';
+
 const refreshBtn = document.querySelector('.refresh-btn');
-// addScoreToEndPoint('John', 90);
+const addScoreForm = document.querySelector('.add-score-form');
+const nameInput = document.querySelector('.name-input');
+const scoreInput = document.querySelector('.score-input');
+
 if (localStorage.getItem('game_id')) {
   loadData();
 } else {
@@ -11,10 +14,13 @@ if (localStorage.getItem('game_id')) {
 }
 
 refreshBtn.addEventListener('click', () => {
-  scoreList.innerHTML = null;
-  loadData();
+  refreshDom();
 });
 
-// addScoreToEndPoint('Sam', 70).then(getScoreList);
-
-// getScoreList();
+addScoreForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  await addScoreToEndPoint(nameInput.value.trim(), scoreInput.value.trim());
+  await refreshDom();
+  nameInput.value = '';
+  scoreInput.value = '';
+});

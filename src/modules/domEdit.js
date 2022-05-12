@@ -17,4 +17,9 @@ const loadData = async () => {
   }
 };
 
-export { addScoreToDom, loadData, scoreList };
+const refreshDom = async () => {
+  scoreList.innerHTML = null;
+  loadData();
+};
+
+export { addScoreToDom, loadData, refreshDom };
