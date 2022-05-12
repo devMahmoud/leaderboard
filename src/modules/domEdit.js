@@ -5,8 +5,8 @@ const scoreList = document.querySelector('.scores-list');
 const addScoreToDom = (name, score) => {
   const scoreLi = document.createElement('li');
   scoreLi.className = 'list-item';
-  scoreLi.innerHTML = `<span class="name-span">${name}</span>
-    <span class="score-span">${score}</span>`;
+  scoreLi.innerHTML = `<p class="name-text">${name}</p>
+    <p class="score-text">${score}</p>`;
   scoreList.append(scoreLi);
 };
 
