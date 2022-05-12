@@ -116,7 +116,27 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n//# sourceURL=webpack://leaderboard/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n/* harmony import */ var _modules_fetchData_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/fetchData.js */ \"./src/modules/fetchData.js\");\n/* harmony import */ var _modules_domEdit_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/domEdit.js */ \"./src/modules/domEdit.js\");\n\n\n\n\nconst refreshBtn = document.querySelector('.refresh-btn');\nconst addScoreForm = document.querySelector('.add-score-form');\nconst nameInput = document.querySelector('.name-input');\nconst scoreInput = document.querySelector('.score-input');\n\nif (localStorage.getItem('game_id')) {\n  (0,_modules_domEdit_js__WEBPACK_IMPORTED_MODULE_2__.loadData)();\n} else {\n  (0,_modules_fetchData_js__WEBPACK_IMPORTED_MODULE_1__.addGameToEndPoint)('Dummy Game');\n}\n\nrefreshBtn.addEventListener('click', () => {\n  (0,_modules_domEdit_js__WEBPACK_IMPORTED_MODULE_2__.refreshDom)();\n});\n\naddScoreForm.addEventListener('submit', async (e) => {\n  e.preventDefault();\n  await (0,_modules_fetchData_js__WEBPACK_IMPORTED_MODULE_1__.addScoreToEndPoint)(nameInput.value.trim(), scoreInput.value.trim());\n  await (0,_modules_domEdit_js__WEBPACK_IMPORTED_MODULE_2__.refreshDom)();\n  nameInput.value = '';\n  scoreInput.value = '';\n});\n\n\n//# sourceURL=webpack://leaderboard/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/domEdit.js":
+/*!********************************!*\
+  !*** ./src/modules/domEdit.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addScoreToDom\": () => (/* binding */ addScoreToDom),\n/* harmony export */   \"loadData\": () => (/* binding */ loadData),\n/* harmony export */   \"refreshDom\": () => (/* binding */ refreshDom)\n/* harmony export */ });\n/* harmony import */ var _fetchData_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./fetchData.js */ \"./src/modules/fetchData.js\");\n\n\nconst scoreList = document.querySelector('.scores-list');\n\nconst addScoreToDom = (name, score) => {\n  const scoreLi = document.createElement('li');\n  scoreLi.className = 'list-item';\n  scoreLi.innerHTML = `<span class=\"name-span\">${name}</span>\n    <span class=\"score-span\">${score}</span>`;\n  scoreList.append(scoreLi);\n};\n\nconst loadData = async () => {\n  const resultObj = await (0,_fetchData_js__WEBPACK_IMPORTED_MODULE_0__.getScoreList)();\n  for (let i = 0; i < resultObj.result.length; i += 1) {\n    addScoreToDom(resultObj.result[i].user, resultObj.result[i].score);\n  }\n};\n\nconst refreshDom = async () => {\n  scoreList.innerHTML = null;\n  loadData();\n};\n\n\n\n//# sourceURL=webpack://leaderboard/./src/modules/domEdit.js?");
+
+/***/ }),
+
+/***/ "./src/modules/fetchData.js":
+/*!**********************************!*\
+  !*** ./src/modules/fetchData.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addGameToEndPoint\": () => (/* binding */ addGameToEndPoint),\n/* harmony export */   \"addScoreToEndPoint\": () => (/* binding */ addScoreToEndPoint),\n/* harmony export */   \"getScoreList\": () => (/* binding */ getScoreList)\n/* harmony export */ });\nconst baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';\n\nconst addGameToEndPoint = async (game) => {\n  let result;\n  try {\n    const res = await fetch(baseUrl, {\n      method: 'POST',\n      body: JSON.stringify({\n        name: game,\n      }),\n      headers: {\n        'Content-type': 'application/json; charset=UTF-8',\n      },\n    });\n    result = await res.json();\n    localStorage.setItem('game_id', result.result.split(' ')[3]);\n  } catch (err) {\n    return err;\n  }\n  return result;\n};\n\nconst addScoreToEndPoint = async (user, score) => {\n  const gameId = localStorage.getItem('game_id');\n  let result;\n  try {\n    const res = await fetch(`${baseUrl}${gameId}/scores/`, {\n      method: 'POST',\n      body: JSON.stringify({\n        user,\n        score,\n      }),\n      headers: {\n        'Content-type': 'application/json; charset=UTF-8',\n      },\n    });\n    result = await res.json();\n  } catch (err) {\n    return err;\n  }\n  return result;\n};\n\nconst getScoreList = async () => {\n  const gameId = localStorage.getItem('game_id');\n  let result;\n  try {\n    const res = await fetch(`${baseUrl}${gameId}/scores/`);\n    result = await res.json();\n  } catch (err) {\n    return err;\n  }\n  return result;\n};\n\n\n\n//# sourceURL=webpack://leaderboard/./src/modules/fetchData.js?");
 
 /***/ })
 
