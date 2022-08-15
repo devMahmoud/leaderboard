@@ -22,9 +22,9 @@ The leaderboard website displays scores submitted by different players. It also 
 - Any Code Editor (e.g. Vscode)
 ## Cloning the repository
 - Create a new folder.
-- Open your console in the new folder and run this command: git clone https://github.com/devMahmoud/leaderboard.git
-- Open /dist folder
-- Open index.html file with your code editor, if you're using Vscode, you could also use Live Server Extension.
+- Open your console in the new folder and run this command: `git clone https://github.com/devMahmoud/leaderboard.git`
+- Open `/dist` folder
+- Open `index.html` file with your code editor, if you're using Vscode, you could also use Live Server Extension.
 - You're done!
 
 ## Author
